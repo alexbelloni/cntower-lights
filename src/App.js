@@ -14,6 +14,7 @@ import {
     Button
 } from 'reactstrap';
 import Calendar from 'react-calendar';
+import {getStatus} from './lightingSchedule';
 
 class App extends Component {
     constructor(props) {
@@ -21,8 +22,10 @@ class App extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            date: new Date(),
         };
+        this.onChange = date => this.setState({ date })
     }
     toggle() {
         this.setState({
@@ -53,8 +56,41 @@ class App extends Component {
                         </Row>                        
                         <Row>
                             <Col>
-                                <Calendar />
-                            </Col>       
+                            <h3>Date</h3>
+                            <Calendar
+                                onChange={this.onChange}
+                                value={this.state.date}
+                                />
+                            </Col>    
+                            <Col>
+                                <h3>Detail</h3>
+                                <Container>
+                                <Row>
+                                        <Col>
+                                        <p>Date:</p>
+                                        </Col>    
+                                        <Col>
+                                        <p>{this.state.date.toString()}</p>
+                                        </Col>                                                                 
+                                    </Row>                                     
+                                    <Row>
+                                        <Col>
+                                        <p>Occasion:</p>
+                                        </Col>    
+                                        <Col>
+                                        <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).occasion}</p>
+                                        </Col>                                                                 
+                                    </Row> 
+                                    <Row>
+                                        <Col>
+                                        <p>Colour:</p>
+                                        </Col>   
+                                        <Col>
+                                        <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).colour}</p>
+                                        </Col>                                                                  
+                                    </Row>                                          
+                                </Container>
+                            </Col>                                  
                         </Row>
                     </Container>
                 </Jumbotron>
