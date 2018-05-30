@@ -13,6 +13,7 @@ import {
     Jumbotron,
     Button
 } from 'reactstrap';
+import Calendar from 'react-calendar';
 
 class App extends Component {
     constructor(props) {
@@ -32,36 +33,28 @@ class App extends Component {
         return (
             <div>
                 <Navbar color="inverse" light expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarBrand href="/">CN Tower Lights</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                                <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
+                
                 <Jumbotron>
                     <Container>
                         <Row>
                             <Col>
-                                <h1>Welcome to React</h1>
-                                <p>
-                                    <Button
-                                        tag="a"
-                                        color="success"
-                                        size="large"
-                                        href="http://reactstrap.github.io"
-                                        target="_blank"
-                                    >
-                                        View Reactstrap Docs
-                                    </Button>
-                                </p>
-                            </Col>
+                                <h1>Tower's Status</h1>
+                            </Col>                            
+                        </Row>                        
+                        <Row>
+                            <Col>
+                                <Calendar />
+                            </Col>       
                         </Row>
                     </Container>
                 </Jumbotron>
