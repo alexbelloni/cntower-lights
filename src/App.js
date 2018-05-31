@@ -58,8 +58,12 @@ class App extends Component {
                             <Col>
                             <h3>Date</h3>
                             <Calendar
+                                locale="en-US"
                                 onChange={this.onChange}
                                 value={this.state.date}
+                                minDate={new Date(2018, 4, 1)}
+                                maxDate={new Date(2018, 4, 31)}
+                                minDetail="month"
                                 />
                             </Col>    
                             <Col>
@@ -70,7 +74,7 @@ class App extends Component {
                                         <p>Date:</p>
                                         </Col>    
                                         <Col>
-                                        <p>{this.state.date.toString()}</p>
+                                        <p>{this.state.date.toDateString()}</p>
                                         </Col>                                                                 
                                     </Row>                                     
                                     <Row>
