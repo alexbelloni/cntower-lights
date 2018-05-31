@@ -48,53 +48,43 @@ class App extends Component {
                 </Navbar>
                 
                 <Jumbotron>
+                    
+                <h2 style={{textAlign:'center', paddingBottom:10}}>{this.state.date.toDateString()}</h2>
+
                     <Container>
                         <Row>
                             <Col>
-                                <h1>Tower's Status</h1>
-                            </Col>                            
-                        </Row>                        
-                        <Row>
-                            <Col>
-                            <h3>Date</h3>
-                            <Calendar
-                                locale="en-US"
-                                onChange={this.onChange}
-                                value={this.state.date}
-                                minDate={new Date(2018, 4, 1)}
-                                maxDate={new Date(2018, 4, 31)}
-                                minDetail="month"
-                                />
-                            </Col>    
-                            <Col>
-                                <h3>Detail</h3>
                                 <Container>
-                                <Row>
+                                    <Row>  
                                         <Col>
-                                        <p>Date:</p>
-                                        </Col>    
+                                            <figure class="figure" class="text-center">
+                                                <img src="tower.png" class="rounded" alt="CN Tower Image"/>
+                                                <figcaption class="figure-caption">CN Tower - Toronto</figcaption>
+                                            </figure>
+                                        </Col>                                         
                                         <Col>
-                                        <p>{this.state.date.toDateString()}</p>
+                                            <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).colour}</p>
+                                            <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).occasion}</p>
                                         </Col>                                                                 
                                     </Row>                                     
-                                    <Row>
-                                        <Col>
-                                        <p>Occasion:</p>
-                                        </Col>    
-                                        <Col>
-                                        <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).occasion}</p>
-                                        </Col>                                                                 
-                                    </Row> 
-                                    <Row>
-                                        <Col>
-                                        <p>Colour:</p>
-                                        </Col>   
-                                        <Col>
-                                        <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).colour}</p>
-                                        </Col>                                                                  
-                                    </Row>                                          
                                 </Container>
-                            </Col>                                  
+                            </Col>  
+                            <Col>
+                                <Container>
+                                    <Row>  
+                                        <Col>
+                                            <Calendar
+                                                locale="en-US"
+                                                onChange={this.onChange}
+                                                value={this.state.date}
+                                                minDate={new Date(2018, 4, 1)}
+                                                maxDate={new Date(2018, 4, 31)}
+                                                minDetail="month"
+                                            />
+                                        </Col>                                                                 
+                                    </Row>                                     
+                                </Container>                                
+                            </Col>                                                              
                         </Row>
                     </Container>
                 </Jumbotron>
