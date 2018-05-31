@@ -49,7 +49,7 @@ let monthName = 'May'
 let token = monthName.concat(' ', day, tab);
 
 let occasion = '-';
-let colour = '-';
+let colours = '-';
 
 let indexStartLine = schedule.indexOf(token);
 if(indexStartLine >= 0) {
@@ -60,11 +60,11 @@ if(indexStartLine >= 0) {
 
     let separator = line.indexOf(tab);
     occasion = line.substr(0, separator);
-    colour = line.substr(separator);
+    colours = line.substr(separator);
 }
 
 
-return {occasion: occasion, colour: colour};
+return {occasion: occasion, colours: colours};
 }
 
 

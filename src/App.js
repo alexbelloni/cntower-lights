@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 import {
     Collapse,
     Navbar,
@@ -10,11 +11,18 @@ import {
     Container,
     Row,
     Col,
-    Jumbotron,
-    Button
+    Jumbotron
 } from 'reactstrap';
 import Calendar from 'react-calendar';
-import {getStatus} from './lightingSchedule';
+import { getStatus } from './lightingSchedule';
+import TowerPicture from './components/TowerPicture';
+
+const DetailArea = (props) => (
+    <div>
+        <p>{props.status ? props.status.colours : ''}</p>
+        <p>{props.status ? props.status.occasion : ''}</p>
+    </div>
+)
 
 class App extends Component {
     constructor(props) {
@@ -24,19 +32,25 @@ class App extends Component {
         this.state = {
             isOpen: false,
             date: new Date(),
+            towerStatus: null
         };
-        this.onChange = date => this.setState({ date })
+        this.onChange = date => this.setState({ date, towerStatus: getStatus(date.getMonth(), date.getDate()) })
     }
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
+
+    componentDidMount() {
+        this.setState({ towerStatus: getStatus(this.state.date.getMonth(), this.state.date.getDate()) })
+    }
+
     render() {
         return (
             <div>
                 <Navbar color="inverse" light expand="md">
-                    <NavbarBrand href="/">CN Tower Lights</NavbarBrand>
+                    <NavbarBrand href="/" className="App-title">CN Tower Lights</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -46,32 +60,28 @@ class App extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-                
+
                 <Jumbotron>
-                    
-                <h2 style={{textAlign:'center', paddingBottom:10}}>{this.state.date.toDateString()}</h2>
+
+                    <h2 className="App-date">{this.state.date.toDateString()}</h2>
 
                     <Container>
                         <Row>
                             <Col>
                                 <Container>
-                                    <Row>  
+                                    <Row>
                                         <Col>
-                                            <figure class="figure" class="text-center">
-                                                <img src="tower.png" class="rounded" alt="CN Tower Image"/>
-                                                <figcaption class="figure-caption">CN Tower - Toronto</figcaption>
-                                            </figure>
-                                        </Col>                                         
+                                            <TowerPicture status={this.state.towerStatus} />
+                                        </Col>
                                         <Col>
-                                            <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).colour}</p>
-                                            <p>{getStatus(this.state.date.getMonth(), this.state.date.getDate()).occasion}</p>
-                                        </Col>                                                                 
-                                    </Row>                                     
+                                            <DetailArea status={this.state.towerStatus} />
+                                        </Col>
+                                    </Row>
                                 </Container>
-                            </Col>  
+                            </Col>
                             <Col>
                                 <Container>
-                                    <Row>  
+                                    <Row>
                                         <Col>
                                             <Calendar
                                                 locale="en-US"
@@ -81,10 +91,10 @@ class App extends Component {
                                                 maxDate={new Date(2018, 4, 31)}
                                                 minDetail="month"
                                             />
-                                        </Col>                                                                 
-                                    </Row>                                     
-                                </Container>                                
-                            </Col>                                                              
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </Col>
                         </Row>
                     </Container>
                 </Jumbotron>
