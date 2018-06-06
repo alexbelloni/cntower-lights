@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './TowerPicture.css';
-import {getColourArray} from '../colourManager';
+import {getColourArray} from '../../colourManager';
 
 class TowerPicture extends Component {
     constructor(props) {
