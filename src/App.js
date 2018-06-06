@@ -14,7 +14,7 @@ import {
     Jumbotron
 } from 'reactstrap';
 import Calendar from 'react-calendar';
-import { getStatus } from './lightingSchedule';
+import { getStatus, getScheduleInfo } from './lightingSchedule';
 import TowerPicture from './components/TowerPicture';
 
 const DetailArea = (props) => (
@@ -87,8 +87,8 @@ class App extends Component {
                                                 locale="en-US"
                                                 onChange={this.onChange}
                                                 value={this.state.date}
-                                                minDate={new Date(2018, 4, 1)}
-                                                maxDate={new Date(2018, 4, 31)}
+                                                minDate={getScheduleInfo().firstDate}
+                                                maxDate={getScheduleInfo().lastDate}
                                                 minDetail="month"
                                             />
                                         </Col>

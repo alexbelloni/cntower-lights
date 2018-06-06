@@ -1,70 +1,62 @@
+export function getScheduleInfo() {
+    return { month: 'June', firstDate: new Date(2018, 5, 1), lastDate: new Date(2018, 5, 30) };
+}
+
 function getSchedule() {
     return `
-    May 1	Let’s Go Raptors! Our lighting celebrates the Toronto Raptors in the NBA playoffs	Red
-    Mat 1	First Responders Day	Red
-    May 2	Mental Health Week	Green
-    May 2	35th Anniversary of CBRE #Humboltstrong	Green and yellow
-    May 3	Brain Tumour Awareness Month	Orange and blue
-    May 4	Huntington Disease Awareness Month	Blue and purple
-    May 4	Community Living Month in Ontario	Blue and green
-    May 5	World Pulmonary Hypertension Day	Purple
-    May 5	Cystic Fibrosis Awareness Month	Blue and turquoise
-    May 6	Pediatric Stroke Awareness Day	Purple
-    May 6	Ontario Police Memorial Ceremony - Honouring police officers in the Province of Ontario who lost their lives in the line of duty	Blue
-    May 7	Bladder Cancer Awareness Month	Yellow
-    May 7	Melanoma Awareness Month	Yellow
-    May 8	World Ovarian Cancer Day	Teal
-    May 8	30th Anniversary of Drive Sober	Red and white
-    May 9	Lymphangioleimyomatosis Awareness (LAM)	Orange
-    May 10	World Lupus Day	Purple and white
-    May 11	Children's Mental Health Week	Green
-    May 12	"Light up the Night" 5th Anniversary - Chronic Immunological and Neurological Diseases (CIND)	Blue, purple and green
-    May 13	Mother's Day - top of the hour effect	Red and pink
-    May 14	Celiac Disease Awareness Month	Green
-    May 14	Our regularly scheduled top of the hour light show will be replaced with lighting for the 1-year countdown to 2019 SOO Invitational Youth Games 	Red and white
-    May 15	Tuberous Sclerosis Complex Global Awareness Day	Blue
-    May 16	World Hypertension Day	Red
-    May 17	World Neurofibromatosis (NF) Awareness Day	Blue and green
-    May 18	Lyme Disease Awareness Month	Green
-    May 19	World IBD Day	Purple
-    May 19	Celebrating the Royal Wedding	Purple
-    May 20	Food Allergy (Anaphylaxis) Awareness Month	Teal
-    May 21	Victoria Day - Honouring the birthdays of Queen Victoria and Queen Elizabeth	Purple and gold
-    May 24	Inside Out - Toronto LGBT Film Festival	Rainbow
-    May 24	National Schizophrenia and Psychosis Awareness Day	Green
-    May 25	Plaid for Dad - Prostate Cancer Awareness	Blue
-    May 26	Leukemia and Lymphoma Awareness	Red and white
-    May 30	World MS Day	Red
-    May 31	LBBTQ Spring Soiree	Rainbow
+    June 1	ALS Awareness Month	Purple
+    June 1	Unplug to Connect - Boys and Girls Clubs of Canada	Green
+    June 2	World Eatin Disorders Action Day	Purple
+    June 2	Let’s Go Marlies! Our regularly scheduled top of the hour light show celebrates the Toronto Marlies in the 2018 Calder Cup Playoffs!	Blue
+    June 3	Canadian Forces Day	Red and white
+    June 5	World Environment Day / Canadian Environment Week	Green
+    June 9	Ride to Conquer Cancer	Blue and yellow
+    June 13	Brain Injury Awareness Month	Blue and green
+    June 14	Tourette Awareness Month	Teal
+    June 15	National Deafblind Awareness Month	Blue
+    June 16	National Blood Donor Week	Red and white
+    June 17	International CDKL5 Awareness Day	Lime green
+    June 17	Father's Day and Prostate Cancer Awareness	Dark blue and light blue
+    June 18	Pollinator Awareness Month	Yellow and black
+    June 19	World Sickle Cell Awareness Day	Red and white
+    June 20	United Nations World Refugee Day	Blue
+    June 21	National Aboriginal Day	Yellow, dark blue, dark red and white
+    June 23	National Day of Remembrance for Victims of Terrorism	Red and white
+    June 23	Global HHT Awareness Day	Red and blue
+    June 24	Saint-Jean-Baptiste Day	Red and white
+    June 26	CN Tower's Birthday. Today the CN Tower turns 42.	Red and white
+    June 27	Canadian Milticulturalism Day	Red and white
+    June 29	National Scleroderma Awareness Month	White and royal blue
+    June 30	Arthrogryposis Multiplex Congenital Awareness	Blue
     `;
 }
 
 export function getStatus(month, day) {
 
-var schedule = getSchedule().toString();
+    var schedule = getSchedule().toString();
 
-const tab = '	';
+    const tab = '	';
 
-let monthName = 'May'
-let token = monthName.concat(' ', day, tab);
+    let monthName = getScheduleInfo().month;
+    let token = monthName.concat(' ', day, tab);
 
-let occasion = '-';
-let colours = '-';
+    let occasion = 'Standard lighting program';
+    let colours = 'Red and White';
 
-let indexStartLine = schedule.indexOf(token);
-if(indexStartLine >= 0) {
-    indexStartLine += token.length;
-    let line = schedule.substr(indexStartLine);
-    let index = line.indexOf('\n');
-    line = line.substr(0, index);
+    let indexStartLine = schedule.indexOf(token);
+    if (indexStartLine >= 0) {
+        indexStartLine += token.length;
+        let line = schedule.substr(indexStartLine);
+        let index = line.indexOf('\n');
+        line = line.substr(0, index);
 
-    let separator = line.indexOf(tab);
-    occasion = line.substr(0, separator);
-    colours = line.substr(separator);
-}
+        let separator = line.indexOf(tab);
+        occasion = line.substr(0, separator);
+        colours = line.substr(separator);
+    }
 
 
-return {occasion: occasion, colours: colours};
+    return { occasion: occasion, colours: colours };
 }
 
 
