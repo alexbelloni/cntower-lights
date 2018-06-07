@@ -2,13 +2,13 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://alexandrebelloni.com/makeitreal",
+  "homepage": "https://ssl8043.websiteseguro.com/site1371067900/makeitreal",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "react": "^16.4.0",
     "react-calendar": "^2.15.1",
     "react-dom": "^16.4.0",
-    "react-router": "^4.3.0",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.3.0",
     "react-scripts": "1.1.4",
     "reactstrap": "^6.0.1"
