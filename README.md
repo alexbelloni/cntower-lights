@@ -5,10 +5,11 @@ https://reactstrap.github.io/
 
 "Getting Started with Create React App" and "Adding Bootstrap" sections
 
-In package.json, I added:
-"homepage" : "http://alexandrebelloni.com/makeitreal",  
+Packages:
+"react-calendar"
+"react-router-dom"
 
 https://github.com/alexbelloni/cntowerlights
 
 Demo:
-http://alexandrebelloni.com/makeitreal/
+https://ssl8043.websiteseguro.com/site1371067900/makeitreal/
