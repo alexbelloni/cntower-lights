@@ -9,8 +9,8 @@ import {
     NavItem,
     NavLink,
 } from 'reactstrap';
-import Main from './components/Main';
-import {getHomepageRoot} from './routeUtil';
+import Main from '../Main';
+import {getHomepageRoot} from '../../routeUtil';
 
 class App extends Component {
     constructor(props) {

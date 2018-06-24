@@ -6,7 +6,7 @@ import {
     Col,
     Jumbotron
 } from 'reactstrap';
-import { getStatus, getScheduleInfo } from '../../lightingSchedule';
+import TowerInfo from '../../lightingSchedule';
 import Calendar from 'react-calendar';
 
 const DetailArea = (props) => (
@@ -20,15 +20,30 @@ class Schedule extends Component {
     constructor(props) {
         super(props);
 
+        const towerInfo = new TowerInfo();
+
         this.state = {
             date: new Date(),
-            towerStatus: null
+            status: null,
+            schedule: null
         };
-        this.onChange = date => this.setState({ date, towerStatus: getStatus(date.getMonth(), date.getDate()) })
+
+        this.onChange = (date) => {
+            if (date) {
+                const status = towerInfo.getStatusByDay(date.getDate(), this.state.schedule);
+                this.setState({ date, status: status });
+            }
+        }
     }
 
     componentDidMount() {
-        this.setState({ towerStatus: getStatus(this.state.date.getMonth(), this.state.date.getDate()) })
+        const day = this.state.date.getDate();
+        const towerInfo = new TowerInfo();
+        const me = this;
+        towerInfo.getSchedule(function(json){
+            const status = towerInfo.getStatusByDay(day, json);
+            me.setState({ status: status, schedule: json })
+        });
     }
 
     render() {
@@ -43,10 +58,10 @@ class Schedule extends Component {
                             <Container>
                                 <Row>
                                     <Col>
-                                        <TowerPicture status={this.state.towerStatus} />
+                                        <TowerPicture status={this.state.status} />
                                     </Col>
                                     <Col>
-                                        <DetailArea status={this.state.towerStatus} />
+                                        <DetailArea status={this.state.status} />
                                     </Col>
                                 </Row>
                             </Container>
@@ -59,8 +74,8 @@ class Schedule extends Component {
                                             locale="en-US"
                                             onChange={this.onChange}
                                             value={this.state.date}
-                                            minDate={getScheduleInfo().firstDate}
-                                            maxDate={getScheduleInfo().lastDate}
+                                            minDate={new Date(2018, 5, 1)}
+                                            maxDate={new Date(2018, 5, 29)}
                                             minDetail="month"
                                         />
                                     </Col>

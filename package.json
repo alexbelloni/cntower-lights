@@ -11,6 +11,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.0",
     "react-scripts": "1.1.4",
+    "react-simple-fetcher": "^0.3.6",
     "reactstrap": "^6.0.1"
   },
   "scripts": {
