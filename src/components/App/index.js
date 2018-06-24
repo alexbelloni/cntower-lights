@@ -10,7 +10,7 @@ import {
     NavLink,
 } from 'reactstrap';
 import Main from '../Main';
-import {getHomepageRoot} from '../../routeUtil';
+import { getHomepageRoot } from '../../routeUtil';
 
 class App extends Component {
     constructor(props) {
@@ -29,20 +29,23 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navbar color="inverse" light expand="md">
+                <Navbar color="light" light expand="md">
                     <NavbarBrand href={getHomepageRoot() + "/"} className="App-title">CN Tower Lights</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href={getHomepageRoot() + "/"}>Home</NavLink>                                
+                                <NavLink href={getHomepageRoot() + "/"}>Home</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink href={getHomepageRoot() + "/about"}>About</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
-
                 <Main />
             </div>
         );

@@ -9,8 +9,16 @@ import {
 import TowerInfo from '../../lightingSchedule';
 import Calendar from 'react-calendar';
 
+function getFormatDate(d) {
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1; //Months are zero based
+    var curr_year = d.getFullYear();
+    return curr_month + "-" + curr_date + "-" + curr_year;    
+}
+
 const DetailArea = (props) => (
     <div>
+        <h2 className="App-date">{getFormatDate(props.date)}</h2>
         <p>{props.status ? props.status.colours : ''}</p>
         <p>{props.status ? props.status.occasion : ''}</p>
     </div>
@@ -50,8 +58,6 @@ class Schedule extends Component {
         return (
             <Jumbotron>
 
-                <h2 className="App-date">{this.state.date.toDateString()}</h2>
-
                 <Container>
                     <Row>
                         <Col>
@@ -61,7 +67,7 @@ class Schedule extends Component {
                                         <TowerPicture status={this.state.status} />
                                     </Col>
                                     <Col>
-                                        <DetailArea status={this.state.status} />
+                                        <DetailArea status={this.state.status} date={this.state.date}/>
                                     </Col>
                                 </Row>
                             </Container>
