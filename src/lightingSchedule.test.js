@@ -11,8 +11,8 @@ it('getSchedule', () => {
 it('getStatusByDay', () => {
   const schedule = new TowerInfo();
   schedule.getSchedule(function(json){
-    const status = schedule.getStatusByDay(3, json);
-    expect(status.occasion != '').toEqual(true);
+    const configs = schedule.getConfigsByDay(3, json);
+    expect(configs.length > 0).toEqual(true);
   });   
 
 });

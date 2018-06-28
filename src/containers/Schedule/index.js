@@ -13,14 +13,30 @@ function getFormatDate(d) {
     var curr_date = d.getDate();
     var curr_month = d.getMonth() + 1; //Months are zero based
     var curr_year = d.getFullYear();
-    return curr_month + "-" + curr_date + "-" + curr_year;    
+    return curr_month + "-" + curr_date + "-" + curr_year;
+}
+
+const Occasion = (props) => (
+            <div>
+            <p>{props.colourCaption}</p>
+            <p>{props.occasions}</p>
+            </div>
+            );
+
+function getConfigAreas(configs) {
+    const colours = [];
+    configs.forEach((element, index) => {
+        colours.push(
+            <Occasion key={index} colourCaption={element.colourCaption} occasions={element.occasions}/>
+        )
+    }, colours);
+    return colours;
 }
 
 const DetailArea = (props) => (
     <div>
         <h2 className="App-date">{getFormatDate(props.date)}</h2>
-        <p>{props.status ? props.status.colours : ''}</p>
-        <p>{props.status ? props.status.occasion : ''}</p>
+        {getConfigAreas(props.configs)}
     </div>
 )
 
@@ -32,14 +48,14 @@ class Schedule extends Component {
 
         this.state = {
             date: new Date(),
-            status: null,
+            configs: null,
             schedule: null
         };
 
         this.onChange = (date) => {
             if (date) {
-                const status = towerInfo.getStatusByDay(date.getDate(), this.state.schedule);
-                this.setState({ date, status: status });
+                const configs = towerInfo.getConfigsByDay(date.getDate(), this.state.schedule);
+                this.setState({ date, configs: configs });
             }
         }
     }
@@ -48,13 +64,19 @@ class Schedule extends Component {
         const day = this.state.date.getDate();
         const towerInfo = new TowerInfo();
         const me = this;
-        towerInfo.getSchedule(function(json){
-            const status = towerInfo.getStatusByDay(day, json);
-            me.setState({ status: status, schedule: json })
+        towerInfo.getSchedule(function (json) {
+            const configs = towerInfo.getConfigsByDay(day, json);
+            me.setState({ configs: configs, schedule: json })
         });
     }
 
     render() {
+        let pictureArea = '';
+        let detailArea = ';'
+        if (this.state.configs) {
+            pictureArea = <TowerPicture configs={this.state.configs} />;
+            detailArea = <DetailArea configs={this.state.configs} date={this.state.date} />;
+        }
         return (
             <Jumbotron>
 
@@ -64,10 +86,10 @@ class Schedule extends Component {
                             <Container>
                                 <Row>
                                     <Col>
-                                        <TowerPicture status={this.state.status} />
+                                        {pictureArea}
                                     </Col>
                                     <Col>
-                                        <DetailArea status={this.state.status} date={this.state.date}/>
+                                        {detailArea}
                                     </Col>
                                 </Row>
                             </Container>
@@ -81,7 +103,7 @@ class Schedule extends Component {
                                             onChange={this.onChange}
                                             value={this.state.date}
                                             minDate={new Date(2018, 5, 1)}
-                                            maxDate={new Date(2018, 5, 29)}
+                                            maxDate={new Date(2018, 5, 30)}
                                             minDetail="month"
                                         />
                                     </Col>

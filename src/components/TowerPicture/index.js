@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './TowerPicture.css';
-import {getColourArray} from '../../colourManager';
 
 class TowerPicture extends Component {
     constructor(props) {
@@ -8,11 +7,13 @@ class TowerPicture extends Component {
     }    
     render() {
         let myClassName = "figure centered";
-        if(this.props.status) {
-            let array = getColourArray(this.props.status.colours.trim());
-            myClassName = "figure centered".concat(' ', array[0]);
+        if(this.props.configs) {
+            let colours = [];
+            this.props.configs.forEach(element => {
+                colours = colours.concat(element.colours);    
+            });
+            myClassName = "figure centered".concat(' ', colours.join(" "));
         }
-
         return (
         <figure className={myClassName}>
             <img src="tower.png" alt="CN Tower" />
