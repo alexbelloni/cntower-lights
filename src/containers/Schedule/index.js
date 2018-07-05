@@ -17,17 +17,17 @@ function getFormatDate(d) {
 }
 
 const Occasion = (props) => (
-            <div>
-            <p>{props.colourCaption}</p>
-            <p>{props.occasions}</p>
-            </div>
-            );
+    <div>
+        <p>{props.colourCaption}</p>
+        <p>{props.occasions}</p>
+    </div>
+);
 
 function getConfigAreas(configs) {
     const colours = [];
     configs.forEach((element, index) => {
         colours.push(
-            <Occasion key={index} colourCaption={element.colourCaption} occasions={element.occasions}/>
+            <Occasion key={index} colourCaption={element.colourCaption} occasions={element.occasions} />
         )
     }, colours);
     return colours;
@@ -49,7 +49,9 @@ class Schedule extends Component {
         this.state = {
             date: new Date(),
             configs: null,
-            schedule: null
+            schedule: null,
+            firstDay: new Date(2018, 5, 1),
+            lastDay: new Date(2018, 5, 30),
         };
 
         this.onChange = (date) => {
@@ -66,7 +68,10 @@ class Schedule extends Component {
         const me = this;
         towerInfo.getSchedule(function (json) {
             const configs = towerInfo.getConfigsByDay(day, json);
-            me.setState({ configs: configs, schedule: json })
+            const month = me.state.date.getMonth();
+            const year = me.state.date.getFullYear();
+            const lastDay = new Date(year, month + 1, 0);
+            me.setState({ configs: configs, schedule: json, firstDay: new Date(year, month, 1), lastDay: lastDay })
         });
     }
 
@@ -79,7 +84,6 @@ class Schedule extends Component {
         }
         return (
             <Jumbotron>
-
                 <Container>
                     <Row>
                         <Col>
@@ -102,8 +106,8 @@ class Schedule extends Component {
                                             locale="en-US"
                                             onChange={this.onChange}
                                             value={this.state.date}
-                                            minDate={new Date(2018, 5, 1)}
-                                            maxDate={new Date(2018, 5, 30)}
+                                            minDate={this.state.firstDay}
+                                            maxDate={this.state.lastDay}
                                             minDetail="month"
                                         />
                                     </Col>
