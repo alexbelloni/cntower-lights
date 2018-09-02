@@ -1,0 +1,71 @@
+.colour-caption {
+    font-size: 14px;
+}
+.occasion {
+    font-size: 18px;
+}
+.colour-square {
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 5px;
+    font-size: 24px;
+}
+.red {
+    background-color:red;
+    color: white;
+}
+.green {
+    background-color:green;
+    color: white;
+}
+.purple {
+    background-color:purple;
+    color: white;
+}
+.blue {
+    background-color:blue;
+    color: white;
+}
+.teal {
+    background-color:teal;
+    color: white;
+}
+.yellow {
+    background-color:yellow;
+    color: black;
+}
+.gold {
+    background-color:yellow;
+    color: black;
+}
+.white {
+    background-color:white;
+    color: black;
+}
+.orange {
+    background-color:orange;
+    color: black;
+}
+.royal {
+    background-color:royalblue;
+    color: white;
+}
+.pink {
+    background-color:pink;
+    color: black;
+}
+.black {
+    background-color:black;
+    color: white;
+}
+.magenta {
+    background-color:magenta;
+    color: black;
+}
+.social-media {
+    padding-right: 5px;
+}
+.cntower-icon-title {
+    font-size: 20px;
+    padding-left: 5px;
+}

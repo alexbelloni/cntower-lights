@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Container,
-    Row,
-    Col,
     Jumbotron
 } from 'reactstrap';
 
-class About extends Component {
-    render() {
-        return (
-            <Jumbotron>
-                <Container>
-                    <Row>
-                        <Col>
-                            About page
-                            </Col>
-                    </Row>
-                </Container>
-            </Jumbotron>
-        );
-    }
+const About = () => {
+    return(
+        <Jumbotron>
+        <Container>
+            <h1>About</h1>
+            <hr />
+        </Container>
+    </Jumbotron>
+    );
 }
 
-export default About; 
+export default About;

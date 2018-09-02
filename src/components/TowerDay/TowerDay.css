@@ -1,0 +1,9 @@
+.day {
+    padding: 5px;
+    font-size: 24px;
+    cursor:pointer;
+}
+
+.current {
+    color: red
+}

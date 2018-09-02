@@ -11,6 +11,8 @@ import {
 } from 'reactstrap';
 import Main from '../Main';
 import { getHomepageRoot } from '../../routeUtil';
+import Footer from '../../containers/Footer';
+import Links from '../../containers/Links';
 
 class App extends Component {
     constructor(props) {
@@ -38,15 +40,14 @@ class App extends Component {
                                 <NavLink href={getHomepageRoot() + "/"}>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href={getHomepageRoot() + "/about"}>About</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
                 <Main />
+                <Links />
+                <Footer />
             </div>
         );
     }

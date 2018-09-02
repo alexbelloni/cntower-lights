@@ -1,6 +1,18 @@
 var TowerInfo = function () {
     function _handleFetch(callback) {
-        fetch(`https://tower-lights.herokuapp.com/schedule`).then(response => callback(response.json()));
+        const url = `https://tower-lights.herokuapp.com/schedule`;
+        fetch(url).then(function (res) {
+            // res instanceof Response == true.
+            if (res.ok) {
+                res.json().then(function (data) {
+                    callback(data);
+                });
+            } else {
+                console.log("Looks like the response wasn't perfect, got status", res.status);
+            }
+        }, function (e) {
+            console.log("Fetch failed!", e);
+        });
     }
 
     //[{"day":3,"configs":[{"occasions":"Canadian Forces Day","colourCaption":"Red and white","colours":["red","white"]}]}]
@@ -13,7 +25,7 @@ var TowerInfo = function () {
     function _getConfigs(day, dates) {
         let occasion = 'Standard lighting program';
         let colours = 'Red and White';
-        let configs = [{occasions: occasion, colourCaption: colours, colours: ["red", "white"]}];
+        let configs = [{ occasions: occasion, colourCaption: colours, colours: ["red", "white"] }];
 
         const dayStatus = dates.filter((element) => {
             return element.day === day;
@@ -27,6 +39,9 @@ var TowerInfo = function () {
     }
 
     function _getConfigsByDay(day, schedule) {
+        if (!schedule.dates) {
+            return [];
+        }
         return _getConfigs(day, schedule.dates);
     }
 
