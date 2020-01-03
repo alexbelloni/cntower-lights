@@ -32,13 +32,11 @@ class App extends Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href={getHomepageRoot() + "/"} className="App-title">CN Tower Lights</NavbarBrand>
+                    <NavbarBrand href="/" className="App-title">CN Tower Lights</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink href={getHomepageRoot() + "/"}>Home</NavLink>
-                            </NavItem>
+                
                             <NavItem>
                                 <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
                             </NavItem>

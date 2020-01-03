@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Schedule from '../../containers/Schedule';
-import {getHomepageRoot} from '../../routeUtil';
 
 class Main extends Component {
     constructor(props) {
@@ -11,7 +10,7 @@ class Main extends Component {
     render() {
         return (
                 <Switch>
-                    <Route exact path={getHomepageRoot() + "/"} component={Schedule} />
+                    <Route path="/" component={Schedule} />
                  </Switch>
         );
     }

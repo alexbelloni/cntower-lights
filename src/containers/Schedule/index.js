@@ -63,8 +63,6 @@ class Schedule extends Component {
     constructor(props) {
         super(props);
 
-        const towerInfo = new TowerInfo();
-
         this.state = {
             date: new Date(),
             configs: null,
@@ -75,30 +73,23 @@ class Schedule extends Component {
 
     componentDidMount() {
         const day = this.state.date.getDate();
-        const towerInfo = new TowerInfo();
         const me = this;
 
-        if (process.env.NODE_ENV === 'development') {
-            const json = { "month": "September", "dates": [{ "day": 2, "configs": [{ "occasions": "Dystonia Awareness Month", "colourCaption": "Royal blue and white", "colours": ["royal", "blue", "white"] }] }, { "day": 3, "configs": [{ "occasions": "Blood Cancer Awareness Month", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 4, "configs": [{ "occasions": "Labour Day", "colourCaption": "Red and White", "colours": ["red", "white"] }] }, { "day": 6, "configs": [{ "occasions": "Toronto International Film Festival Opening NIght", "colourCaption": "Orange", "colours": ["orange"] }] }, { "day": 7, "configs": [{ "occasions": "OneWalk to Conquer Cancer", "colourCaption": "Pink, purple and blue", "colours": ["pink", "purple", "blue"] }, { "occasions": "10th Anniversary Stand Up To Cancer (SU2C)", "colourCaption": "Red and orange", "colours": ["red", "orange"] }] }, { "day": 8, "configs": [{ "occasions": "World Literacy Day", "colourCaption": "Orange and red", "colours": ["orange", "red"] }] }, { "day": 9, "configs": [{ "occasions": "Parkinson's Awareness", "colourCaption": "Red and blue", "colours": ["red", "blue"] }] }, { "day": 10, "configs": [{ "occasions": "World Suicide Prevention Day", "colourCaption": "Orange and yellow", "colours": ["orange", "yellow"] }, { "occasions": "Thyroid Cancer Awareness Month", "colourCaption": "Pink, teal and blue", "colours": ["pink", "teal", "blue"] }] }, { "day": 11, "configs": [{ "occasions": "Pain Awareness Month (PAM)", "colourCaption": "Blue", "colours": ["blue"] }] }, { "day": 13, "configs": [{ "occasions": "Sunshine After Dark", "colourCaption": "Yellow", "colours": ["yellow"] }] }, { "day": 14, "configs": [{ "occasions": "Prostate Cancer Awareness Month", "colourCaption": "Blue", "colours": ["blue"] }, { "occasions": "Histiocytosis Awareness Day", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 15, "configs": [{ "occasions": "World Lymphoma Awareness Day", "colourCaption": "Red", "colours": ["red"] }, { "occasions": "30th Anniversary of Aids Walk Toronto", "colourCaption": "Red, white and black", "colours": ["red", "white", "black"] }] }, { "day": 16, "configs": [{ "occasions": "Toronto International Film Festival Closing NIght", "colourCaption": "Orange", "colours": ["orange"] }] }, { "day": 17, "configs": [{ "occasions": "Mitochondrial Disease Awareness Week", "colourCaption": "Green", "colours": ["green"] }] }, { "day": 18, "configs": [{ "occasions": "Big Brothers Big Sisters Day Toronto", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 19, "configs": [{ "occasions": "Pulmonary Fibrosis Awareness Month", "colourCaption": "Red and blue", "colours": ["red", "blue"] }] }, { "day": 20, "configs": [{ "occasions": "Interstitial Cystitis Awareness Month", "colourCaption": "Teal", "colours": ["teal"] }] }, { "day": 21, "configs": [{ "occasions": "International Day of Peace", "colourCaption": "Red and white", "colours": ["red", "white"] }] }, { "day": 22, "configs": [{ "occasions": "National Coaches Week", "colourCaption": "Blue, yellow and red", "colours": ["blue", "yellow", "red"] }, { "occasions": "Free-Them Freedom Walk", "colourCaption": "Purple", "colours": ["purple"] }, { "occasions": "National Learn to Code Day", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 24, "configs": [{ "occasions": "Police and Peace Officers' National Memorial Day", "colourCaption": "Blue", "colours": ["blue"] }, { "occasions": "UN Women HeForShe", "colourCaption": "Magenta", "colours": ["magenta"] }] }, { "day": 25, "configs": [{ "occasions": "Franco Ontarian Day", "colourCaption": "Green and white", "colours": ["green", "white"] }, { "occasions": "National Forest Week", "colourCaption": "Green", "colours": ["green"] }] }, { "day": 28, "configs": [{ "occasions": "174th Anniversary of Markham Fair", "colourCaption": "Orange, yellow and red", "colours": ["orange", "yellow", "red"] }] }, { "day": 29, "configs": [{ "occasions": "World Heart Day", "colourCaption": "Red", "colours": ["red"] }] }] };
+        const towerInfo = new TowerInfo()
+        towerInfo.getSchedule(function (json) {
             const configs = towerInfo.getConfigsByDay(day, json);
             me.setState({ configs, schedule: json, loaded: true })
-        } else {
-            towerInfo.getSchedule(function (json) {
-                console.log(JSON.stringify(json));
-                const configs = towerInfo.getConfigsByDay(day, json);
-                me.setState({ configs, schedule: json, loaded: true })
-            });
-        }
+        });
     }
 
     handleDayClick = (day) => {
-        if (day) {
+        const _day = day || (new Date()).getDate()
             const today = this.state.date;
-            const clicked = new Date(today.getFullYear(), today.getMonth(), day);
+            const clicked = new Date(today.getFullYear(), today.getMonth(), _day);
             const towerInfo = new TowerInfo();
-            const configs = towerInfo.getConfigsByDay(day, this.state.schedule);
+            const configs = towerInfo.getConfigsByDay(_day, this.state.schedule);
             this.setState({ date: clicked, configs });
-        }
+     
     }
 
     render() {
@@ -118,7 +109,7 @@ class Schedule extends Component {
                         <Days currentDay={this.state.date.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} onClick={this.handleDayClick} />
                     </Col>
                 </Row>
-                <p><img className='social-media' src={facebook} /><img className='social-media' src={instagram} /><img className='social-media' src={twitter} /></p>
+                {/* <p><img className='social-media' src={facebook} /><img className='social-media' src={instagram} /><img className='social-media' src={twitter} /></p> */}
             </div>
             ) :
             (<img src={loading} />);
@@ -126,7 +117,7 @@ class Schedule extends Component {
         return (
             <Jumbotron>
                 <Container>
-                    <h1>How will CNTower look like?</h1>
+                    <h1>How colorful is it?</h1>
                     <hr />
                     {row}
                 </Container>

@@ -8,13 +8,13 @@ import {
 
 export default class Days extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {currentDay: props.currentDay};       
+        this.state = { currentDay: props.currentDay };
     }
 
     static getDerivedStateFromProps(props, state) {
-        return {currentDay: props.currentDay};
+        return { currentDay: props.currentDay };
     }
 
     render() {
@@ -24,9 +24,10 @@ export default class Days extends React.Component {
 
         return (
             <div>
+                <a href='#' onClick={() => { this.props.onClick() }}>Today</a>
                 <p>Special Days of {this.props.month}</p>
                 <Container>
-                <Row>{days}</Row>
+                    <Row>{days}</Row>
                 </Container>
             </div>
         );
