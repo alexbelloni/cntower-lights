@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ssl8043.websiteseguro.com/site1371067900/makeitreal",
+  "homepage": "",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "react": "^16.4.0",
