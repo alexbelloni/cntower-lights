@@ -9,9 +9,6 @@ import TowerInfo from '../../lightingSchedule';
 import loading from '../../assets/loading.gif';
 import Days from '../../containers/Days';
 import './Schedule.css';
-import facebook from '../../assets/facebook.png';
-import instagram from '../../assets/instagram.png';
-import twitter from '../../assets/twitter.png';
 import cntower from '../../assets/cntower.png';
 
 function getFormatDate(d, monthName) {
@@ -99,7 +96,7 @@ class Schedule extends Component {
 
         let row = this.state.loaded ?
             (<div>
-                <img src={cntower} /><span className='cntower-icon-title'>CNTower</span>
+                <img src={cntower} alt="cntower logo" /><span className='cntower-icon-title'>CNTower</span>
                 <Row>
                     <Col sm='12' md='6'>
                         {detailArea}
@@ -108,10 +105,10 @@ class Schedule extends Component {
                         <Days currentDay={this.state.date.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} onClick={this.handleDayClick} />
                     </Col>
                 </Row>
-                {/* <p><img className='social-media' src={facebook} /><img className='social-media' src={instagram} /><img className='social-media' src={twitter} /></p> */}
+               
             </div>
             ) :
-            (<img src={loading} />);
+            (<img src={loading} alt='' />);
         row = (<Row><Col><Container>{row}</Container></Col></Row>);
         return (
             <Jumbotron>

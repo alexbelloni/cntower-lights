@@ -3,10 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import Schedule from '../../containers/Schedule';
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
                 <Switch>

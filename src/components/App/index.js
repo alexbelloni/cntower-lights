@@ -10,7 +10,6 @@ import {
     NavLink,
 } from 'reactstrap';
 import Main from '../Main';
-import { getHomepageRoot } from '../../routeUtil';
 import Footer from '../../containers/Footer';
 import Links from '../../containers/Links';
 
