@@ -24,7 +24,7 @@ export default class Days extends React.Component {
 
         return (
             <div>
-                <a href='#' onClick={() => { this.props.onClick() }}>Today</a>
+                <p><a href='#' onClick={() => { this.props.onClick() }}>Today</a></p>
                 <p>Special Days of {this.props.month}</p>
                 <Container>
                     <Row>{days}</Row>

@@ -7,7 +7,7 @@ const Footer = ()=>{
     return(
         <Container>
             <hr/>
-            <p>Author: Alexandre Belloni Alves | <a href='https://alexandrebelloni.com' target='_blank'>homepage</a></p>
+            <p className='small'><a href="https://alexandrebelloni.com">Alexandre Belloni Alves</a></p>
         </Container>  
     );
 }

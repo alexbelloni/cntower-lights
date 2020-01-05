@@ -55,7 +55,6 @@ const DetailArea = (props) => (
     <div>
         <h2 className="App-date">{getFormatDate(props.date, props.monthName)}</h2>
         {getConfigAreas(props.configs)}
-        <p>Toronto, ON, Canada</p>
     </div>
 )
 
@@ -102,10 +101,10 @@ class Schedule extends Component {
             (<div>
                 <img src={cntower} /><span className='cntower-icon-title'>CNTower</span>
                 <Row>
-                    <Col>
+                    <Col sm='12' md='6'>
                         {detailArea}
                     </Col>
-                    <Col>
+                    <Col sm='12' md='6'>
                         <Days currentDay={this.state.date.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} onClick={this.handleDayClick} />
                     </Col>
                 </Row>
