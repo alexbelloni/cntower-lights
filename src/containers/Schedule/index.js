@@ -48,12 +48,14 @@ function getConfigAreas(configs) {
     );
 }
 
-const DetailArea = (props) => (
-    <div>
-        <h2 className="App-date">{getFormatDate(props.date, props.monthName)}</h2>
-        {getConfigAreas(props.configs)}
-    </div>
-)
+const DetailArea = (props) => {
+    return (
+        <div>
+            <h2 className="App-date">{getFormatDate(props.date, props.monthName)}</h2>
+            {getConfigAreas(props.configs)}
+        </div>
+    );
+}
 
 class Schedule extends Component {
     constructor(props) {
@@ -67,25 +69,35 @@ class Schedule extends Component {
         };
     }
 
+    getTheDateThatWorks(json) {
+        const sameJsonMonthDate = new Date(`${json.month} 1, 2020`)
+        const jsonMonth = sameJsonMonthDate.getMonth();
+
+        const today = new Date()
+        const currentMonth = today.getMonth();
+
+        const isSameMonth = jsonMonth === currentMonth;
+
+        return { date: isSameMonth ? today : new Date(today.getFullYear(), jsonMonth, 1), isSameMonth }
+    }
+
     componentDidMount() {
-        const day = this.state.date.getDate();
         const me = this;
 
         const towerInfo = new TowerInfo()
         towerInfo.getSchedule(function (json) {
-            const configs = towerInfo.getConfigsByDay(day, json);
-            me.setState({ configs, schedule: json, loaded: true })
+            const date = me.getTheDateThatWorks(json).date
+            const configs = towerInfo.getConfigsByDay(date.getDate(), json);
+            me.setState({ configs, schedule: json, loaded: true, date, isSameMonth: date.isSameMonth })
         });
     }
 
     handleDayClick = (day) => {
-        const _day = day || (new Date()).getDate()
-            const today = this.state.date;
-            const clicked = new Date(today.getFullYear(), today.getMonth(), _day);
-            const towerInfo = new TowerInfo();
-            const configs = towerInfo.getConfigsByDay(_day, this.state.schedule);
-            this.setState({ date: clicked, configs });
-     
+        const clicked = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), day);
+        const towerInfo = new TowerInfo();
+        const configs = towerInfo.getConfigsByDay(day, this.state.schedule);
+        this.setState({ date: clicked, configs });
+
     }
 
     render() {
@@ -102,10 +114,10 @@ class Schedule extends Component {
                         {detailArea}
                     </Col>
                     <Col sm='12' md='6'>
-                        <Days currentDay={this.state.date.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} onClick={this.handleDayClick} />
+                        <Days currentDay={this.state.date.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} />
                     </Col>
                 </Row>
-               
+
             </div>
             ) :
             (<img src={loading} alt='' />);
