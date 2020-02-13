@@ -10,6 +10,8 @@ import loading from '../../assets/loading.gif';
 import Days from '../../containers/Days';
 import './Schedule.css';
 import cntower from '../../assets/cntower.png';
+import { Facebook, Twitter } from 'react-sharingbuttons'
+import 'react-sharingbuttons/dist/main.css'
 
 function getFormatDate(d, monthName) {
     var curr_date = d.getDate();
@@ -28,15 +30,16 @@ const Occasion = (props) => {
             <p key={Math.random()} className='occasion'>{props.occasions}</p>
             <p key={Math.random()}>{colours}</p>
             <p key={Math.random()} className='colour-caption'>{props.colourCaption}</p>
+            <SharingButtons text={`On ${props.dateString}, Toronto's CN Tower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. @TourCNTower @xbelloni`}/>
         </div>
     );
 }
 
-function getConfigAreas(configs) {
+function getConfigAreas(configs, dateString) {
     const colours = [];
     configs.forEach((element, index) => {
         colours.push(
-            <li key={index}><Occasion colours={element.colours} colourCaption={element.colourCaption} occasions={element.occasions} /></li>
+            <li key={index}><Occasion dateString={dateString} colours={element.colours} colourCaption={element.colourCaption} occasions={element.occasions} /></li>
         )
     }, colours);
     return (
@@ -52,10 +55,21 @@ const DetailArea = (props) => {
     return (
         <div>
             <h2 className="App-date">{getFormatDate(props.date, props.monthName)}</h2>
-            {getConfigAreas(props.configs)}
+            {getConfigAreas(props.configs, getFormatDate(props.date, props.monthName))}           
         </div>
     );
 }
+
+const SharingButtons = (props) => {
+    const url = 'https://cntowerlights.netlify.com'
+  
+    return (
+      <div className="SharingButtons">
+          <span>Share on</span>
+        <Twitter url={url} shareText={props.text} />
+      </div>
+    )
+  }
 
 class Schedule extends Component {
     constructor(props) {
