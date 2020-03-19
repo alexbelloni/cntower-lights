@@ -29,7 +29,7 @@ const Occasion = (props) => {
                 {colours}
             </div>
             <p key={Math.random()} className='colour-caption'>{props.colourCaption}</p>
-            <SharingButtons text={`On ${props.dateString}, Toronto's CN Tower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. @TourCNTower @xbelloni`} />
+            <SharingButtons text={`On ${props.dateString}, Toronto's #CNTower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. #TourCN @TourCNTower @xbelloni `} />
         </div>
     );
 }
