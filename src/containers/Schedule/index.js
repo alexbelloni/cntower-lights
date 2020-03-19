@@ -15,15 +15,19 @@ import 'react-sharingbuttons/dist/main.css';
 import DateString from '../../components/Date';
 
 const Occasion = (props) => {
-
-    const colours = props.colours.map(colour => {
+    const _colours = props.colours;
+    //const _colours = ["green","green","green","green","green","green","green","green",];
+    const colours = _colours.map(colour => {
         const classname = 'colour-square ' + colour;
         return <span key={Math.random()} className={classname}>{colour}</span>
     })
+
     return (
         <div>
             <p key={Math.random()} className='occasion'>{props.occasions}</p>
-            <p key={Math.random()}>{colours}</p>
+            <div className="colours">
+                {colours}
+            </div>
             <p key={Math.random()} className='colour-caption'>{props.colourCaption}</p>
             <SharingButtons text={`On ${props.dateString}, Toronto's CN Tower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. @TourCNTower @xbelloni`} />
         </div>
@@ -81,7 +85,7 @@ class Schedule extends Component {
         };
     }
 
-    getToday(){
+    getToday() {
         //return new Date("2020-03-11");
         return new Date();
     }
@@ -108,10 +112,10 @@ class Schedule extends Component {
             me.setState({ configs, schedule: json, loaded: true, date, isSameMonth: date.isSameMonth })
         }
 
-        towerInfo.getSchedule(setSchedule);
+        //towerInfo.getSchedule(setSchedule);
 
-        // const json = { "month": "March", "dates": [{ "day": 1, "configs": [{ "occasions": "National Engineering Month", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 5, "configs": [{ "occasions": "Restoring Smiles Foundation", "colourCaption": "Purple and white", "colours": ["purple", "white"] }] }, { "day": 6, "configs": [{ "occasions": "Colorectal Cancer Alliance", "colourCaption": "Medium blue, dark blue and mint blue", "colours": ["blue", "mint"] }, { "occasions": "World Lymphedema Day", "colourCaption": "Teal", "colours": ["teal"] }] }, { "day": 8, "configs": [{ "occasions": "International Women's Day", "colourCaption": "Pink", "colours": ["pink"] }] }, { "day": 9, "configs": [{ "occasions": "Commonwealth Day", "colourCaption": "Red and white", "colours": ["red", "white"] }] }, { "day": 12, "configs": [{ "occasions": "World Kidney Day", "colourCaption": "Orange", "colours": ["orange"] }] }, { "day": 17, "configs": [{ "occasions": "Saint Patrick's Day", "colourCaption": "Green", "colours": ["green"] }] }, { "day": 19, "configs": [{ "occasions": "First Day of Spring", "colourCaption": "Green and yellow (top of the hour effect)", "colours": ["green", "yellow"] }] }, { "day": 20, "configs": [{ "occasions": "International Francophonie Day", "colourCaption": "Red, blue, yellow, green and purple", "colours": ["red", "blue", "yellow", "green", "purple"] }] }, { "day": 21, "configs": [{ "occasions": "World Down Syndrome Day", "colourCaption": "Yellow and blue", "colours": ["yellow", "blue"] }, { "occasions": "International Day for Elimination of Racial Discrimination", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 22, "configs": [{ "occasions": "World Water Day", "colourCaption": "Blue", "colours": ["blue"] }] }, { "day": 24, "configs": [{ "occasions": "World Tuberculosis (TB) Day", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 26, "configs": [{ "occasions": "Purple Day for Epilepsy Awareness", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 28, "configs": [{ "occasions": "Earth Hour", "colourCaption": "The CN Tower joins the City of Toronto and residents in support of the Earth Hour movement to raise awareness of the fight against climate change.  All exterior lights will be dimmed from 8:30-9:30pm.", "colours": [] }] }] }
-        // setSchedule(json);        
+        const json = { "month": "March", "dates": [{ "day": 1, "configs": [{ "occasions": "National Engineering Month", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 5, "configs": [{ "occasions": "Restoring Smiles Foundation", "colourCaption": "Purple and white", "colours": ["purple", "white"] }] }, { "day": 6, "configs": [{ "occasions": "Colorectal Cancer Alliance", "colourCaption": "Medium blue, dark blue and mint blue", "colours": ["blue", "mint"] }, { "occasions": "World Lymphedema Day", "colourCaption": "Teal", "colours": ["teal"] }] }, { "day": 8, "configs": [{ "occasions": "International Women's Day", "colourCaption": "Pink", "colours": ["pink"] }] }, { "day": 9, "configs": [{ "occasions": "Commonwealth Day", "colourCaption": "Red and white", "colours": ["red", "white"] }] }, { "day": 12, "configs": [{ "occasions": "World Kidney Day", "colourCaption": "Orange", "colours": ["orange"] }] }, { "day": 17, "configs": [{ "occasions": "Saint Patrick's Day", "colourCaption": "Green", "colours": ["green"] }] }, { "day": 19, "configs": [{ "occasions": "First Day of Spring", "colourCaption": "Green and yellow (top of the hour effect)", "colours": ["green", "yellow"] }] }, { "day": 20, "configs": [{ "occasions": "International Francophonie Day", "colourCaption": "Red, blue, yellow, green and purple", "colours": ["red", "blue", "yellow", "green", "purple"] }] }, { "day": 21, "configs": [{ "occasions": "World Down Syndrome Day", "colourCaption": "Yellow and blue", "colours": ["yellow", "blue"] }, { "occasions": "International Day for Elimination of Racial Discrimination", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 22, "configs": [{ "occasions": "World Water Day", "colourCaption": "Blue", "colours": ["blue"] }] }, { "day": 24, "configs": [{ "occasions": "World Tuberculosis (TB) Day", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 26, "configs": [{ "occasions": "Purple Day for Epilepsy Awareness", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 28, "configs": [{ "occasions": "Earth Hour", "colourCaption": "The CN Tower joins the City of Toronto and residents in support of the Earth Hour movement to raise awareness of the fight against climate change.  All exterior lights will be dimmed from 8:30-9:30pm.", "colours": [] }] }] }
+        setSchedule(json);        
     }
 
     handleDayClick = (day) => {
@@ -122,9 +126,9 @@ class Schedule extends Component {
     }
 
     render() {
-        const detailArea = this.state.loaded ? 
-        <DetailArea configs={this.state.configs} date={this.state.currentDate} monthName={this.state.schedule && this.state.schedule.month} /> : 
-        <DetailArea date={this.state.currentDate} />;
+        const detailArea = this.state.loaded ?
+            <DetailArea configs={this.state.configs} date={this.state.currentDate} monthName={this.state.schedule && this.state.schedule.month} /> :
+            <DetailArea date={this.state.currentDate} />;
 
         return (
             <Jumbotron>
@@ -138,9 +142,9 @@ class Schedule extends Component {
                                 {detailArea}
                             </Col>
                             <Col sm='12' md='6'>
-                                {this.state.loaded && this.state.schedule ? 
-                                <Days today={this.getToday()} currentDay={this.state.currentDate.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} /> :
-                                <img src={loading} alt='' />
+                                {this.state.loaded && this.state.schedule ?
+                                    <Days today={this.getToday()} currentDay={this.state.currentDate.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} /> :
+                                    <img src={loading} alt='' />
                                 }
                             </Col>
                         </Row>
