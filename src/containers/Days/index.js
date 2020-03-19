@@ -20,7 +20,7 @@ export default class Days extends React.Component {
         const days = this.props.days.map((d, index) => {
             return <Col key={index}><TowerDay currentDay={this.state.currentDay} day={d.day} onClick={this.props.onClick} key={'day' + d.day} /></Col>
         });
-        const today = (new Date()).getDate();
+        const today = this.props.today.getDate();
         return (
             <div>
                 <p>The Standard lighting colours are <b>'Red and White'</b></p>
