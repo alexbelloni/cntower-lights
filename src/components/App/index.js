@@ -30,22 +30,25 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/" className="App-title">CN Tower Lights</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                
-                            <NavItem>
-                                <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
+                <div id="nav-div" className="bg-light">
+                    <div id="nav-main" class="container">
+                        <Navbar color="light" light expand="md">
+                            <NavbarBrand href="/" className="App-title">CN Tower Lights</NavbarBrand>
+                            <NavbarToggler onClick={this.toggle} />
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto" navbar>
+                                    <NavItem>
+                                        <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
+                                    </NavItem>
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
+                    </div>
+                </div>
                 <Main />
                 <Links />
                 <Footer />
-            </div>
+            </div >
         );
     }
 }
