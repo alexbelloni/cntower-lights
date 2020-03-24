@@ -31,7 +31,7 @@ class App extends Component {
         return (
             <div>
                 <div id="nav-div" className="bg-light">
-                    <div id="nav-main" class="container">
+                    <div id="nav-main" className="container">
                         <Navbar color="light" light expand="md">
                             <NavbarBrand href="/" className="App-title">CN Tower Lights</NavbarBrand>
                             <NavbarToggler onClick={this.toggle} />
