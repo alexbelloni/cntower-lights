@@ -10,7 +10,7 @@ import Loading from '../../components/Loading';
 import Days from '../../containers/Days';
 import './Schedule.css';
 import cntower from '../../assets/cntower.png';
-import { Facebook, Twitter } from 'react-sharingbuttons';
+import { Twitter } from 'react-sharingbuttons';
 import 'react-sharingbuttons/dist/main.css';
 import DateString from '../../components/Date';
 
