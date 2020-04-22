@@ -64,7 +64,7 @@ const DetailArea = (props) => {
 }
 
 const SharingButtons = (props) => {
-    const url = 'https://cntowerlights.netlify.com'
+    const url = 'https://cntowerlights.netlify.app'
 
     return (
         <div className="SharingButtons">
