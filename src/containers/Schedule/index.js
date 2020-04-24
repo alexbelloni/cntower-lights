@@ -22,13 +22,15 @@ const Occasion = (props) => {
         return <span key={Math.random()} className={classname}>{colour}</span>
     })
 
+    const colourCaption = props.colourCaption;
+
     return (
         <div>
             <p key={Math.random()} className='occasion'>{props.occasions}</p>
             <div className="colours">
                 {colours}
             </div>
-            <p key={Math.random()} className='colour-caption'>{props.colourCaption}</p>
+            <p key={Math.random()} className='colour-caption'>{colourCaption}</p>
             <SharingButtons text={`On ${props.dateString}, Toronto's #CNTower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. #TourCN @TourCNTower @xbelloni `} />
         </div>
     );
@@ -37,8 +39,13 @@ const Occasion = (props) => {
 function getConfigAreas(configs, dateString) {
     const colours = [];
     configs.forEach((element, index) => {
+        let colourCaption = "";
+        try{
+            colourCaption = (typeof element.colourCaption) === "string" ? colourCaption : "";
+        } catch { }
+        
         colours.push(
-            <li key={index}><Occasion dateString={dateString} colours={element.colours} colourCaption={element.colourCaption} occasions={element.occasions} /></li>
+            <li key={index}><Occasion dateString={dateString} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
         )
     }, colours);
     return (
