@@ -1,4 +1,4 @@
-# CN Tower Lights
+# CNTower Lights
 
 This is a React app that shows what will be the colours of the CNTower at a specific night. 
 

@@ -33,7 +33,7 @@ class App extends Component {
                 <div id="nav-div" className="bg-light">
                     <div id="nav-main" className="container">
                         <Navbar color="light" light expand="md">
-                            <NavbarBrand href="/" className="App-title">CN Tower Lights</NavbarBrand>
+                            <NavbarBrand href="/" className="App-title">CNTower Lights</NavbarBrand>
                             <NavbarToggler onClick={this.toggle} />
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
