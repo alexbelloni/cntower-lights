@@ -1,8 +1,7 @@
 import React from "react"
 
 const DateString = props => {
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
+    var monthNames = getMonthNames();
 
     const { date } = props;
     var curr_date = date.getDate();
@@ -10,6 +9,9 @@ const DateString = props => {
     return (<div> {(props.monthName || monthNames[date.getMonth()]) + ' ' + curr_date + ", " + curr_year} </div>);
 }
 
+const getMonthNames = _ => {
+    return ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+}
 
-
-export default DateString;
+export { DateString, getMonthNames };

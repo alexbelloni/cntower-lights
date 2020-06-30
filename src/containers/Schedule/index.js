@@ -12,7 +12,7 @@ import './Schedule.css';
 import cntower from '../../assets/cntower.png';
 import { Twitter } from 'react-sharingbuttons';
 import 'react-sharingbuttons/dist/main.css';
-import DateString from '../../components/Date';
+import { DateString, getMonthNames } from '../../components/Date';
 
 const Occasion = (props) => {
     const _colours = props.colours;
@@ -40,10 +40,10 @@ function getConfigAreas(configs, dateString) {
     const colours = [];
     configs.forEach((element, index) => {
         let colourCaption = "";
-        try{
+        try {
             colourCaption = (typeof element.colourCaption) === "string" ? colourCaption : "";
         } catch { }
-        
+
         colours.push(
             <li key={index}><Occasion dateString={dateString} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
         )
@@ -61,6 +61,7 @@ const DetailArea = (props) => {
     function getFormatDate(date, monthName) {
         return `${monthName} ${date.getDate()}`
     }
+
     return (
         <div>
             <h2 className="App-date"><DateString date={props.date} monthName={props.monthName} /></h2>
@@ -84,7 +85,6 @@ const SharingButtons = (props) => {
 class Schedule extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             currentDate: this.getToday(),
             configs: null,
@@ -94,8 +94,12 @@ class Schedule extends Component {
     }
 
     getToday() {
-        //return new Date("2020-03-11");
+        //return new Date(2020, 6, 1);//"2020-07-01"
         return new Date();
+    }
+
+    getTodayMonth() {
+        return this.getToday().getMonth();
     }
 
     getTheDateThatWorks(json) {
@@ -115,9 +119,20 @@ class Schedule extends Component {
         const towerInfo = new TowerInfo();
 
         function setSchedule(json) {
-            const date = me.getTheDateThatWorks(json).date
-            const configs = towerInfo.getConfigsByDay(date.getDate(), json);
-            me.setState({ configs, schedule: json, loaded: true, date, isSameMonth: date.isSameMonth })
+            if (!json || json.length === 0) {
+                me.setState({loaded: true})
+                return
+            }
+            const monthName = getMonthNames()[me.getTodayMonth()];
+            const obj = json.filter(o => o.month === monthName)[0];
+            if (!obj || obj.dates === 0) {
+                me.setState({loaded: true})
+                return
+            }
+
+            const date = me.getTheDateThatWorks(obj).date
+            const configs = towerInfo.getConfigsByDay(date.getDate(), obj);
+            me.setState({ configs, schedule: obj, loaded: true, date, isSameMonth: date.isSameMonth })
         }
 
         towerInfo.getSchedule(setSchedule);
@@ -152,9 +167,9 @@ class Schedule extends Component {
                             <Col sm='12' md='6'>
                                 {this.state.loaded && this.state.schedule &&
                                     <Days today={this.getToday()} currentDay={this.state.currentDate.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} />
-                                    
+
                                 }
-                                <Loading isLoading={!this.state.loaded}/>
+                                <Loading isLoading={!this.state.loaded} />
                             </Col>
                         </Row>
                     </div>
