@@ -2,8 +2,12 @@
 .colour-caption {
     font-size: 14px;
 }
-.occasion {
-    font-size: 18px;
+
+.occasion .title{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
 }
 .colours {
     display: flex;
@@ -78,4 +82,12 @@
 }
 .h1, h1 {
     font-size: 2.2rem !important;
+}
+
+@media screen and (min-width: 600px){
+    .occasion .title{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

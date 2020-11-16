@@ -13,6 +13,7 @@ import cntower from '../../assets/cntower.png';
 import { Twitter } from 'react-sharingbuttons';
 import 'react-sharingbuttons/dist/main.css';
 import { DateString, getMonthNames } from '../../components/Date';
+import AddToCalendar from '../../components/AddToCalendar';
 
 const Occasion = (props) => {
     const _colours = props.colours;
@@ -24,9 +25,17 @@ const Occasion = (props) => {
 
     const colourCaption = props.colourCaption;
 
+    const startDate = props.date;
+    startDate.setHours(12);
+    startDate.setMinutes(0);
+
     return (
-        <div>
-            <p key={Math.random()} className='occasion'>{props.occasions}</p>
+        <div className="occasion">
+            <div className="title">
+                <span key={Math.random()} className='occasion'>{props.occasions}</span>
+                <AddToCalendar title={props.occasions} start={startDate}/>
+            </div>
+
             <div className="colours">
                 {colours}
             </div>
@@ -36,7 +45,7 @@ const Occasion = (props) => {
     );
 }
 
-function getConfigAreas(configs, dateString) {
+function getConfigAreas(configs, dateString, date) {
     const colours = [];
     configs.forEach((element, index) => {
         let colourCaption = "";
@@ -45,7 +54,7 @@ function getConfigAreas(configs, dateString) {
         } catch { }
 
         colours.push(
-            <li key={index}><Occasion dateString={dateString} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
+            <li key={index}><Occasion dateString={dateString} date={date} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
         )
     }, colours);
     return (
@@ -65,7 +74,8 @@ const DetailArea = (props) => {
     return (
         <div>
             <h2 className="App-date"><DateString date={props.date} monthName={props.monthName} /></h2>
-            {props.configs && getConfigAreas(props.configs, getFormatDate(props.date, props.monthName))}
+
+            {props.configs && getConfigAreas(props.configs, getFormatDate(props.date, props.monthName), props.date)}
             <Loading isLoading={!props.loaded} />
         </div>
     );
@@ -120,13 +130,13 @@ class Schedule extends Component {
 
         function setSchedule(json) {
             if (!json || json.length === 0) {
-                me.setState({loaded: true})
+                me.setState({ loaded: true })
                 return
             }
             const monthName = getMonthNames()[me.getTodayMonth()];
             const obj = json.filter(o => o.month === monthName)[0];
             if (!obj || obj.dates === 0) {
-                me.setState({loaded: true})
+                me.setState({ loaded: true })
                 return
             }
 
