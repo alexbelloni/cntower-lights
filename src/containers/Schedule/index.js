@@ -14,6 +14,7 @@ import { Twitter } from 'react-sharingbuttons';
 import 'react-sharingbuttons/dist/main.css';
 import { DateString, getMonthNames } from '../../components/Date';
 import AddToCalendar from '../../components/AddToCalendar';
+import ExternalLink from '../../components/ExternalLink';
 
 const Occasion = (props) => {
     const _colours = props.colours;
@@ -33,7 +34,10 @@ const Occasion = (props) => {
         <div className="occasion">
             <div className="title">
                 <span key={Math.random()} className='occasion'>{props.occasions}</span>
-                <AddToCalendar title={props.occasions} start={startDate}/>
+                <div className="icons">
+                    <AddToCalendar title={props.occasions} start={startDate} />
+                    <ExternalLink href={`https://www.google.com/search?q=${props.occasions.toLowerCase().split(' ').join('+')}`} />
+                </div>
             </div>
 
             <div className="colours">

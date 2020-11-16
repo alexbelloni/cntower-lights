@@ -1,19 +1,28 @@
+.icons {
+    display: flex;
+}
+
+.icons>* {
+    margin-right: 10px;
+}
 
 .colour-caption {
     font-size: 14px;
 }
 
-.occasion .title{
+.occasion .title {
     display: flex;
     flex-direction: column;
     font-size: 20px;
     font-weight: bold;
 }
+
 .colours {
     display: flex;
     flex-wrap: wrap;
     padding: 15px 0;
 }
+
 .colour-square {
     margin-left: 3px;
     margin-right: 3px;
@@ -21,73 +30,94 @@
     margin: 2px;
     font-size: 24px;
 }
+
 .red {
-    background-color:red;
+    background-color: red;
     color: white;
 }
+
 .green {
-    background-color:green;
+    background-color: green;
     color: white;
 }
+
 .purple {
-    background-color:purple;
+    background-color: purple;
     color: white;
 }
+
 .blue {
-    background-color:blue;
+    background-color: blue;
     color: white;
 }
+
 .teal {
-    background-color:teal;
+    background-color: teal;
     color: white;
 }
+
 .yellow {
-    background-color:yellow;
+    background-color: yellow;
     color: black;
 }
+
 .gold {
-    background-color:yellow;
+    background-color: yellow;
     color: black;
 }
+
 .white {
-    background-color:white;
+    background-color: white;
     color: black;
 }
+
 .orange {
-    background-color:orange;
+    background-color: orange;
     color: black;
 }
+
 .royal {
-    background-color:royalblue;
+    background-color: royalblue;
     color: white;
 }
+
 .pink {
-    background-color:pink;
+    background-color: pink;
     color: black;
 }
+
 .black {
-    background-color:black;
+    background-color: black;
     color: white;
 }
+
 .magenta {
-    background-color:magenta;
+    background-color: magenta;
     color: black;
 }
+
 .social-media {
     padding-right: 5px;
 }
+
 .cntower-icon-title {
     font-size: 20px;
     padding-left: 5px;
 }
+
 .h1, h1 {
     font-size: 2.2rem !important;
 }
 
-@media screen and (min-width: 600px){
-    .occasion .title{
+@media screen and (min-width: 600px) {
+    .occasion .title {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
+    }
+
+    .icons>* {
+        margin-left: 10px;
+        margin-right: 0;
     }
 }
