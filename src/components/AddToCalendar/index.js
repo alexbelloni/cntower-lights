@@ -17,7 +17,7 @@ const AddToCalendar = props => {
 
     return !hrefObj ? '' : (
         <div>
-            <a href={hrefObj.google} target='_blank' rel="noopener noreferrer"><img src={CalendarImg} /></a>
+            <a href={hrefObj.google} target='_blank' rel="noopener noreferrer"><img alt="" src={CalendarImg} /></a>
         </div>
         )
 }
