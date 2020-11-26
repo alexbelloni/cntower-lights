@@ -1,6 +1,7 @@
 import React from 'react';
 import TowerDay from '../../components/TowerDay';
 import { Container, Row, Col } from 'reactstrap';
+import './index.css';
 
 export default class Days extends React.Component {
     constructor(props) {

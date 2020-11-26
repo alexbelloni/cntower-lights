@@ -4,6 +4,10 @@
     cursor:pointer;
 }
 
+.day.passed{
+    color: grey;
+}
+
 .current {
     color: red
 }

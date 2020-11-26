@@ -2,9 +2,10 @@ import React from 'react';
 import './TowerDay.css';
 
 const Day = (props) => {
-    const classname = 'day ' + (props.currentDay === props.day ? 'current' : '');
+    const {currentDay, day, onClick} = props;
+    const classname = `day ${currentDay === day ? 'current' : ''} ${new Date().getDate() > parseInt(day) ? 'passed' : ''}`;
     return (
-        <a href="." className={classname} onClick={e => { e.preventDefault(); props.onClick(props.day) }}>{props.day}</a>
+        <a href="." className={classname} onClick={e => { e.preventDefault(); onClick(day) }}>{day}</a>
     );
 }
 
