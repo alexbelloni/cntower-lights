@@ -10,11 +10,11 @@ import Loading from '../../components/Loading';
 import Days from '../../containers/Days';
 import './Schedule.css';
 import cntower from '../../assets/cntower.png';
-import { Twitter } from 'react-sharingbuttons';
 import 'react-sharingbuttons/dist/main.css';
 import { DateString, getMonthNames } from '../../components/Date';
 import AddToCalendar from '../../components/AddToCalendar';
 import ExternalLink from '../../components/ExternalLink';
+import TwitterButton from '../../components/TwitterButton';
 
 const Occasion = (props) => {
     const _colours = props.colours;
@@ -44,7 +44,7 @@ const Occasion = (props) => {
                 {colours}
             </div>
             <p key={Math.random()} className='colour-caption'>{colourCaption}</p>
-            <SharingButtons text={`On ${props.dateString}, Toronto's #CNTower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. #TourCN #mycntower @TourCNTower @xbelloni `} />
+            <TwitterButton text={`On ${props.dateString}, Toronto's #CNTower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. #TourCN #mycntower @TourCNTower @xbelloni `} />
         </div>
     );
 }
@@ -83,17 +83,6 @@ const DetailArea = (props) => {
             <Loading isLoading={!props.loaded} />
         </div>
     );
-}
-
-const SharingButtons = (props) => {
-    const url = 'https://cntowerlights.netlify.app'
-
-    return (
-        <div className="SharingButtons">
-            <span>Share on</span>
-            <Twitter url={url} shareText={props.text} />
-        </div>
-    )
 }
 
 class Schedule extends Component {

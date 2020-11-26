@@ -1,0 +1,11 @@
+.react-sharing-button--twitter {
+    border-radius: 0px;
+}
+
+.react-sharing-button__link{
+    text-decoration: none !important;
+}
+
+.react-sharing-button__link:hover{
+    color: white;
+}
