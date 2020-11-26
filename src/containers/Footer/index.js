@@ -1,13 +1,13 @@
 import React from 'react';
-import {
-    Container,
-} from 'reactstrap';
+import { Container } from 'reactstrap';
+import heartImg from '../../assets/heart.png';
+import './index.css';
 
 const Footer = ()=>{
     return(
-        <Container>
+        <Container className="footer">
             <hr/>
-            <p className='small'><a href="https://alexandrebelloni.com">Alexandre Belloni Alves</a></p>
+            <span className='small by'>created <img className="heart" alt="" src={heartImg}/> by <a href="https://alexandrebelloni.com/" target="_blank" rel="noopener noreferrer">alexbelloni</a></span>
         </Container>  
     );
 }
