@@ -9,7 +9,7 @@ import {
     NavItem,
     NavLink,
 } from 'reactstrap';
-import Main from '../Main';
+import Schedule from '../../containers/Schedule';
 import Footer from '../../containers/Footer';
 import Links from '../../containers/Links';
 
@@ -45,7 +45,7 @@ class App extends Component {
                         </Navbar>
                     </div>
                 </div>
-                <Main />
+                <Schedule />
                 <Links />
                 <Footer />
             </div >
