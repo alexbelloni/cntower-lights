@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Container,
-    Row,
-    Col,
-    Jumbotron
-} from 'reactstrap';
+import { Container, Row, Col, Jumbotron } from 'reactstrap';
 import TowerInfo from '../../lightingSchedule';
 import Loading from '../../components/Loading';
 import Days from '../../containers/Days';
@@ -17,34 +12,34 @@ import ExternalLink from '../../components/ExternalLink';
 import TwitterButton from '../../components/TwitterButton';
 
 const Occasion = (props) => {
-    const _colours = props.colours;
-    //const _colours = ["green","green","green","green","green","green","green","green",];
-    const colours = _colours.map(colour => {
-        const classname = 'colour-square ' + colour;
-        return <span key={Math.random()} className={classname}>{colour}</span>
+    const { date, colours, colourCaption, occasions, dateString } = props;
+    const colourSquares = colours.map((colour, i) => {
+        const classname = `colour-square ${colour}`;
+        return <span key={i} className={classname}>{colour}</span>
     })
 
-    const colourCaption = props.colourCaption;
-
-    const startDate = props.date;
-    startDate.setHours(12);
-    startDate.setMinutes(0);
+    const calendarDate = date;
+    calendarDate.setHours(12);
+    calendarDate.setMinutes(0);
 
     return (
         <div className="occasion">
             <div className="title">
-                <span key={Math.random()} className='occasion'>{props.occasions}</span>
-                <div className="icons">
-                    <AddToCalendar title={props.occasions} start={startDate} />
-                    <ExternalLink href={`https://www.google.com/search?q=${props.occasions.toLowerCase().split(' ').join('+')}`} />
-                </div>
+                <span className='occasion'>{occasions}</span>
+                {occasions !== 'Standard lighting program' &&
+                    <div className="icons">
+                        {calendarDate.getDate() !== (new Date()).getDate() && <AddToCalendar title={occasions} start={calendarDate} />}
+                        <ExternalLink href={`https://www.google.com/search?q=${occasions.toLowerCase().split(' ').join('+')}`} />
+                    </div>
+                }
+
             </div>
 
             <div className="colours">
-                {colours}
+                {colourSquares}
             </div>
             <p key={Math.random()} className='colour-caption'>{colourCaption}</p>
-            <TwitterButton text={`On ${props.dateString}, Toronto's #CNTower 🇨🇦 will be --${props.colours.join(',')}-- because of the ${props.occasions}. #TourCN #mycntower @TourCNTower @xbelloni `} />
+            <TwitterButton text={`On ${dateString}, Toronto's #CNTower 🇨🇦 will be --${colours.join(',')}-- because of the ${occasions}. #TourCN #mycntower @TourCNTower @xbelloni `} />
         </div>
     );
 }
@@ -139,9 +134,6 @@ class Schedule extends Component {
         }
 
         towerInfo.getSchedule(setSchedule);
-
-        // const json = { "month": "March", "dates": [{ "day": 1, "configs": [{ "occasions": "National Engineering Month", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 5, "configs": [{ "occasions": "Restoring Smiles Foundation", "colourCaption": "Purple and white", "colours": ["purple", "white"] }] }, { "day": 6, "configs": [{ "occasions": "Colorectal Cancer Alliance", "colourCaption": "Medium blue, dark blue and mint blue", "colours": ["blue", "mint"] }, { "occasions": "World Lymphedema Day", "colourCaption": "Teal", "colours": ["teal"] }] }, { "day": 8, "configs": [{ "occasions": "International Women's Day", "colourCaption": "Pink", "colours": ["pink"] }] }, { "day": 9, "configs": [{ "occasions": "Commonwealth Day", "colourCaption": "Red and white", "colours": ["red", "white"] }] }, { "day": 12, "configs": [{ "occasions": "World Kidney Day", "colourCaption": "Orange", "colours": ["orange"] }] }, { "day": 17, "configs": [{ "occasions": "Saint Patrick's Day", "colourCaption": "Green", "colours": ["green"] }] }, { "day": 19, "configs": [{ "occasions": "First Day of Spring", "colourCaption": "Green and yellow (top of the hour effect)", "colours": ["green", "yellow"] }] }, { "day": 20, "configs": [{ "occasions": "International Francophonie Day", "colourCaption": "Red, blue, yellow, green and purple", "colours": ["red", "blue", "yellow", "green", "purple"] }] }, { "day": 21, "configs": [{ "occasions": "World Down Syndrome Day", "colourCaption": "Yellow and blue", "colours": ["yellow", "blue"] }, { "occasions": "International Day for Elimination of Racial Discrimination", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 22, "configs": [{ "occasions": "World Water Day", "colourCaption": "Blue", "colours": ["blue"] }] }, { "day": 24, "configs": [{ "occasions": "World Tuberculosis (TB) Day", "colourCaption": "Red", "colours": ["red"] }] }, { "day": 26, "configs": [{ "occasions": "Purple Day for Epilepsy Awareness", "colourCaption": "Purple", "colours": ["purple"] }] }, { "day": 28, "configs": [{ "occasions": "Earth Hour", "colourCaption": "The CNTower joins the City of Toronto and residents in support of the Earth Hour movement to raise awareness of the fight against climate change.  All exterior lights will be dimmed from 8:30-9:30pm.", "colours": [] }] }] }
-        // setSchedule(json);        
     }
 
     handleDayClick = (day) => {
