@@ -8,11 +8,8 @@
     "react": "^16.4.0",
     "react-calendar": "^2.15.1",
     "react-dom": "^16.4.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.0",
     "react-scripts": "^3.4.0",
     "react-sharingbuttons": "^1.0.0",
-    "react-simple-fetcher": "^0.3.6",
     "reactstrap": "^6.0.1"
   },
   "scripts": {
