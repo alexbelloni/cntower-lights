@@ -28,11 +28,10 @@ const Occasion = (props) => {
                 <span className='occasion'>{occasions}</span>
                 {occasions !== 'Standard lighting program' &&
                     <div className="icons">
-                        {calendarDate.getDate() !== (new Date()).getDate() && <AddToCalendar title={occasions} start={calendarDate} />}
+                        {calendarDate.getDate() > (new Date()).getDate() && <AddToCalendar title={occasions} start={calendarDate} />}
                         <ExternalLink href={`https://www.google.com/search?q=${occasions.toLowerCase().split(' ').join('+')}`} />
                     </div>
                 }
-
             </div>
 
             <div className="colours">
