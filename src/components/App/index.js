@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import {
-    Collapse,
+    // Collapse,
+    // NavbarToggler,
+    // Nav,
+    // NavItem,
+    // NavLink,
     Navbar,
-    NavbarToggler,
     NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
 } from 'reactstrap';
 import Schedule from '../../containers/Schedule';
 import Footer from '../../containers/Footer';
