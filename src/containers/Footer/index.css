@@ -1,3 +1,10 @@
 .footer{
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer span:first-child{
+    border-top: 1px solid;
+    border-color: var(--light);
 }
