@@ -34,14 +34,14 @@ class App extends Component {
                     <div id="nav-main" className="container">
                         <Navbar color="light" light expand="md">
                             <NavbarBrand href="/" className="App-title">CNTower Lights</NavbarBrand>
-                            <NavbarToggler onClick={this.toggle} />
+                            {/* <NavbarToggler onClick={this.toggle} />
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
                                     <NavItem>
                                         <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
                                     </NavItem>
                                 </Nav>
-                            </Collapse>
+                            </Collapse> */}
                         </Navbar>
                     </div>
                 </div>
