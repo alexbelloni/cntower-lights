@@ -5,10 +5,11 @@
   "homepage": "",
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "dotenv": "^8.2.0",
     "react": "^16.4.0",
     "react-calendar": "^2.15.1",
     "react-dom": "^16.4.0",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^4.0.3",
     "react-sharingbuttons": "^1.0.0",
     "reactstrap": "^6.0.1"
   },

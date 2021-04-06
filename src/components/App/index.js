@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import {
-    // Collapse,
-    // NavbarToggler,
-    // Nav,
-    // NavItem,
-    // NavLink,
     Navbar,
     NavbarBrand,
 } from 'reactstrap';
@@ -34,14 +29,6 @@ class App extends Component {
                     <div id="nav-main" className="container">
                         <Navbar color="light" light expand="md">
                             <NavbarBrand href="/" className="App-title">CNTower Lights</NavbarBrand>
-                            {/* <NavbarToggler onClick={this.toggle} />
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="ml-auto" navbar>
-                                    <NavItem>
-                                        <NavLink href="https://github.com/alexbelloni/cntowerlights">Github</NavLink>
-                                    </NavItem>
-                                </Nav>
-                            </Collapse> */}
                         </Navbar>
                     </div>
                 </div>

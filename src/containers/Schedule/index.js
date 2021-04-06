@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Jumbotron } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import TowerInfo from '../../lightingSchedule';
 import Loading from '../../components/Loading';
 import Days from '../../containers/Days';
@@ -91,7 +91,6 @@ class Schedule extends Component {
     }
 
     getToday() {
-        //return new Date(2020, 6, 1);//"2020-07-01"
         return new Date();
     }
 
@@ -148,27 +147,25 @@ class Schedule extends Component {
             <DetailArea date={this.state.currentDate} loaded={false} />;
 
         return (
-            <Jumbotron>
-                <Container>
-                    <h1>How colorful is it?</h1>
-                    <hr />
-                    <div>
-                        <img src={cntower} alt="cntower logo" /><span className='cntower-icon-title'>CNTower</span>
-                        <Row>
-                            <Col sm='12' md='6'>
-                                {detailArea}
-                            </Col>
-                            <Col sm='12' md='6'>
-                                {this.state.loaded && this.state.schedule &&
-                                    <Days today={this.getToday()} currentDay={this.state.currentDate.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} />
+            <Container className="schedule">
+                <h1>How colorful is it?</h1>
+                <hr />
+                <div>
+                    <img src={cntower} alt="cntower logo" /><span className='cntower-icon-title'>CNTower</span>
+                    <Row>
+                        <Col sm='12' md='6'>
+                            {detailArea}
+                        </Col>
+                        <Col sm='12' md='6'>
+                            {this.state.loaded && this.state.schedule &&
+                                <Days today={this.getToday()} currentDay={this.state.currentDate.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} />
 
-                                }
-                                <Loading isLoading={!this.state.loaded} />
-                            </Col>
-                        </Row>
-                    </div>
-                </Container>
-            </Jumbotron>
+                            }
+                            <Loading isLoading={!this.state.loaded} />
+                        </Col>
+                    </Row>
+                </div>
+            </Container>
         );
     }
 }
