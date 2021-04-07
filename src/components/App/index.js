@@ -32,6 +32,7 @@ class App extends Component {
                         </Navbar>
                     </div>
                 </div>
+
                 <Schedule />
                 <Links />
                 <Footer />

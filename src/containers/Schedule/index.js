@@ -29,7 +29,7 @@ const Occasion = (props) => {
                 {occasions !== 'Standard lighting program' &&
                     <div className="icons">
                         {calendarDate.getDate() > (new Date()).getDate() && <AddToCalendar title={occasions} start={calendarDate} />}
-                        <ExternalLink href={`https://www.google.com/search?q=${occasions.toLowerCase().split(' ').join('+')}`} />
+                        <ExternalLink href={`https://www.google.com/search?q=${occasions.toLowerCase().split(' ').join('+').replace(/#/g, '')}`} />
                     </div>
                 }
             </div>
@@ -52,12 +52,14 @@ function getConfigAreas(configs, dateString, date) {
         } catch { }
 
         colours.push(
-            <li key={index}><Occasion dateString={dateString} date={date} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
+            <li className="occasion-li" 
+            style={{backgroundColor: element.colours && element.colours[0]}} 
+            key={index}><Occasion dateString={dateString} date={date} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
         )
     }, colours);
     return (
         <div>
-            <ul>
+            <ul className="occasion-ul">
                 {colours}
             </ul>
         </div>
@@ -147,9 +149,8 @@ class Schedule extends Component {
             <DetailArea date={this.state.currentDate} loaded={false} />;
 
         return (
-            <Container className="schedule">
+            <div className="container schedule">
                 <h1>How colorful is it?</h1>
-                <hr />
                 <div>
                     <img src={cntower} alt="cntower logo" /><span className='cntower-icon-title'>CNTower</span>
                     <Row>
@@ -165,7 +166,7 @@ class Schedule extends Component {
                         </Col>
                     </Row>
                 </div>
-            </Container>
+            </div>
         );
     }
 }

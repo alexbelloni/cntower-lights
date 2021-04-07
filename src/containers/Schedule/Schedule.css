@@ -1,6 +1,7 @@
-.schedule.container{
+.schedule {
     padding: 2rem 1rem;
 }
+
 .icons {
     display: flex;
 }
@@ -11,6 +12,27 @@
 
 .colour-caption {
     font-size: 14px;
+}
+
+.occasion-ul {
+    padding-left: 0px;
+}
+
+.occasion-ul>* {
+    margin: 10px 0 !important;
+}
+
+.occasion-li {
+    padding: 10px;
+  
+    list-style: none;
+    margin: 0;
+}
+
+.occasion {
+    padding: 10px;
+    background-color: white;
+    transform: rotate(-2deg);
 }
 
 .occasion .title {
@@ -118,7 +140,6 @@
         justify-content: flex-start;
         align-items: center;
     }
-
     .icons>* {
         margin-left: 10px;
         margin-right: 0;
