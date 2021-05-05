@@ -1,4 +1,5 @@
 import React from "react"
+import "./style.css";
 
 const DateString = props => {
     var monthNames = getMonthNames();
@@ -6,7 +7,16 @@ const DateString = props => {
     const { date } = props;
     var curr_date = date.getDate();
     var curr_year = date.getFullYear();
-    return (<div> {(props.monthName || monthNames[date.getMonth()]) + ' ' + curr_date + ", " + curr_year} </div>);
+    return (
+        <div className="datestring">
+            <div className="month">
+                {(props.monthName || monthNames[date.getMonth()]) + ' ' + curr_date + ", " + curr_year}
+            </div>
+            <div className="day-of-week">
+                {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][date.getDay()]}
+            </div>
+        </div>
+    );
 }
 
 const getMonthNames = _ => {

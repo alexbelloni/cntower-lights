@@ -1,0 +1,14 @@
+.datestring {
+    display: flex;
+    align-items: baseline;
+}
+
+.datestring .month {
+    font-size: 2rem;
+    padding-right: 20px;
+}
+
+.datestring .day-of-week {
+    font-size: 1rem;
+    text-align: right;
+}

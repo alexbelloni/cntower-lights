@@ -35,6 +35,10 @@
     transform: rotate(-2deg);
 }
 
+.no-colour{
+    border: 1px solid;
+}
+
 .occasion .title {
     display: flex;
     flex-direction: column;

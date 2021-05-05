@@ -23,7 +23,7 @@ const Occasion = (props) => {
     calendarDate.setMinutes(0);
 
     return (
-        <div className="occasion">
+        <div className={`occasion ${colours.length === 0 ? 'no-colour' : ''}`}>
             <div className="title">
                 <span className='occasion'>{occasions}</span>
                 {occasions !== 'Standard lighting program' &&
@@ -54,7 +54,9 @@ function getConfigAreas(configs, dateString, date) {
         colours.push(
             <li className="occasion-li" 
             style={{backgroundColor: element.colours && element.colours[0]}} 
-            key={index}><Occasion dateString={dateString} date={date} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} /></li>
+            key={index}>
+                <Occasion dateString={dateString} date={date} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} />
+            </li>
         )
     }, colours);
     return (
