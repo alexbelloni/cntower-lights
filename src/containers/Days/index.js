@@ -26,7 +26,7 @@ export default class Days extends React.Component {
             <div>
                 <p>The Standard lighting colours are <b>'Red and White'</b></p>
                 {(this.props.isSameMonth || !this.isSpecialDay(today)) && <p><a href='.' onClick={e => { e.preventDefault(); this.props.onClick(today) }}>Today</a></p>}                
-                <p><span className="special-days">{this.props.days.length}</span> Special Days in {this.props.month}</p>
+                <p className="p-special-days"><span className="special-days">{this.props.days.length}</span> Special Days in {this.props.month}</p>
                 <Container>
                     <Row>{days}</Row>
                 </Container>

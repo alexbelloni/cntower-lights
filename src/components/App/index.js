@@ -24,7 +24,7 @@ class App extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="App">
                 <div id="nav-div" className="bg-light">
                     <div id="nav-main" className="container">
                         <Navbar color="light" light expand="md">
@@ -32,7 +32,6 @@ class App extends Component {
                         </Navbar>
                     </div>
                 </div>
-
                 <Schedule />
                 <Links />
                 <Footer />

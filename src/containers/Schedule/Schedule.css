@@ -1,5 +1,18 @@
 .schedule {
-    padding: 2rem 1rem;
+    padding: 5px 10px 15px 10px;
+}
+
+.schedule .icon-header {
+    display: flex;
+}
+
+.schedule .icon-header>* {
+    margin-right: 10px;
+    height: 30px;
+}
+
+.schedule .main-row {
+    padding: 10px 0 0 0;
 }
 
 .icons {
@@ -24,7 +37,6 @@
 
 .occasion-li {
     padding: 10px;
-  
     list-style: none;
     margin: 0;
 }
@@ -35,7 +47,7 @@
     transform: rotate(-2deg);
 }
 
-.no-colour{
+.no-colour, .white {
     border: 1px solid;
 }
 
@@ -131,7 +143,6 @@
 
 .cntower-icon-title {
     font-size: 20px;
-    padding-left: 5px;
 }
 
 .h1, h1 {

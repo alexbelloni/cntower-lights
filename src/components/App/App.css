@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 div {
   position: relative;
 }
@@ -12,5 +8,5 @@ div {
 
 .App-date {
   text-align: left;
-  padding-bottom: 12px;
+  padding: 0 0 12px 0;
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import TowerInfo from '../../lightingSchedule';
 import Loading from '../../components/Loading';
 import Days from '../../containers/Days';
 import './Schedule.css';
 import cntower from '../../assets/cntower.png';
+import leaf from '../../assets/leaf.jpg';
 import 'react-sharingbuttons/dist/main.css';
 import { DateString, getMonthNames } from '../../components/Date';
 import AddToCalendar from '../../components/AddToCalendar';
@@ -23,7 +24,7 @@ const Occasion = (props) => {
     calendarDate.setMinutes(0);
 
     return (
-        <div className={`occasion ${colours.length === 0 ? 'no-colour' : ''}`}>
+        <div className={`occasion ${colours.length === 0 || colours.indexOf('white') > -1? 'no-colour' : ''}`}>
             <div className="title">
                 <span className='occasion'>{occasions}</span>
                 {occasions !== 'Standard lighting program' &&
@@ -52,9 +53,9 @@ function getConfigAreas(configs, dateString, date) {
         } catch { }
 
         colours.push(
-            <li className="occasion-li" 
-            style={{backgroundColor: element.colours && element.colours[0]}} 
-            key={index}>
+            <li className="occasion-li"
+                style={{ backgroundColor: element.colours && element.colours[0] }}
+                key={index}>
                 <Occasion dateString={dateString} date={date} colours={element.colours} colourCaption={colourCaption} occasions={element.occasions} />
             </li>
         )
@@ -154,15 +155,19 @@ class Schedule extends Component {
             <div className="container schedule">
                 <h1>How colorful is it?</h1>
                 <div>
-                    <img src={cntower} alt="cntower logo" /><span className='cntower-icon-title'>CNTower</span>
-                    <Row>
-                        <Col sm='12' md='6'>
+                    <div className="icon-header">
+                        <img src={cntower} alt="cntower logo" />
+                        <span className='cntower-icon-title'>CNTower</span>
+                        <img src={leaf} alt="leaf" />
+                    </div>
+
+                    <Row className="main-row">
+                        <Col sm='12' md='6' className="main-col">
                             {detailArea}
                         </Col>
-                        <Col sm='12' md='6'>
+                        <Col sm='12' md='6' className="main-col">
                             {this.state.loaded && this.state.schedule &&
                                 <Days today={this.getToday()} currentDay={this.state.currentDate.getDate()} month={this.state.schedule.month} days={this.state.schedule.dates} isSameMonth={this.state.isSameMonth} onClick={this.handleDayClick} />
-
                             }
                             <Loading isLoading={!this.state.loaded} />
                         </Col>
