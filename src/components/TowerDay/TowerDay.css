@@ -9,5 +9,7 @@
 }
 
 .current {
-    color: red
+    color: red;
+    border: 1px solid;
+    border-radius: 10px;
 }
