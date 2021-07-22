@@ -153,7 +153,7 @@ class Schedule extends Component {
 
         return (
             <div className="container schedule">
-                <h1>How colorful is it?</h1>
+                <h1>What are the colors today?</h1>
                 <div>
                     <div className="icon-header">
                         <img src={cntower} alt="cntower logo" />
