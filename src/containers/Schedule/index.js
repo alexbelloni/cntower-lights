@@ -120,12 +120,14 @@ class Schedule extends Component {
         const towerInfo = new TowerInfo();
 
         function setSchedule(json) {
+            
             if (!json || json.length === 0) {
                 me.setState({ loaded: true })
                 return
             }
-            const monthName = getMonthNames()[me.getTodayMonth()];
+            const monthName = json[0].fake ? "April" : getMonthNames()[me.getTodayMonth()];
             const obj = json.filter(o => o.month === monthName)[0];
+
             if (!obj || obj.dates === 0) {
                 me.setState({ loaded: true })
                 return
